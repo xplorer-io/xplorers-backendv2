@@ -1,0 +1,16 @@
+{
+  "name": "xplorers-backend-v2",
+  "version": "1.0.0",
+  "description": "Xplorers backend v2",
+  "main": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon src/index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "prettier": "^3.1.0"
+  }
+}
