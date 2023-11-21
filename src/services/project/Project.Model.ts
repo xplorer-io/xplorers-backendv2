@@ -3,7 +3,7 @@ import { IProject } from "types/Project";
 
 const ProjectSchema: Schema<IProject> = new Schema(
   {
-    id: {
+    projectId: {
       type: Schema.Types.String,
       required: true,
     },

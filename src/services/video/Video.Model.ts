@@ -4,7 +4,7 @@ import { IVideo } from "types/Video";
 
 const VideoSchema: Schema<IVideo> = new Schema(
   {
-    id: {
+    videoId: {
       type: Schema.Types.String,
       required: true,
     },

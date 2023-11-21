@@ -1,5 +1,10 @@
-import { IVideoResponse, IVideoService } from "types/Video";
+import { IVideo, IVideoResponse, IVideoService } from "types/Video";
 import { videoModel } from "./Video.Model";
+import {
+  IVideoControllerRequestBody,
+  IVideoControllerResponse,
+} from "api/controllers/video/CreateVideo.Controller";
+import { randomUUID } from "crypto";
 
 class VideoService implements IVideoService {
   async getVideos(): Promise<IVideoResponse> {
@@ -30,6 +35,51 @@ class VideoService implements IVideoService {
       return {
         status_code: 500,
         message: `Internal server error ${error}`,
+      };
+    }
+  }
+
+  async createVideo(
+    data: IVideoControllerRequestBody
+  ): Promise<IVideoControllerResponse> {
+    try {
+      console.log("Creating video from videoService");
+
+      const videoData: IVideoControllerRequestBody = {
+        videoId: randomUUID(),
+        title: data.title,
+        description: data.description,
+        thumbnailUrl: data.thumbnailUrl,
+        videoUrl: data.videoUrl,
+      };
+
+      console.log("Creating video model");
+
+      const video = new videoModel(videoData);
+
+      console.log(`Saving user ${JSON.stringify(videoData)}`);
+
+      const savedVideo = await video.save();
+
+      if (!savedVideo) {
+        console.log(`Unable to save video ${JSON.stringify(videoData)}}`);
+        return {
+          status_code: 500,
+          message: "Unable to save video",
+        };
+      }
+
+      console.log("Successfully created video");
+
+      return {
+        status_code: 200,
+        message: "Successfully created video",
+        video: video,
+      };
+    } catch (error) {
+      return {
+        status_code: 500,
+        message: "Server error",
       };
     }
   }

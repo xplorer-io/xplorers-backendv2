@@ -1,7 +1,11 @@
+import {
+  IVideoControllerRequestBody,
+  IVideoControllerResponse,
+} from "api/controllers/video/CreateVideo.Controller";
 import { IResponse } from "./Response";
 
 export interface IVideo {
-  id: string;
+  videoId: string;
   title: string;
   description: string;
   thumbnailUrl: string;
@@ -16,4 +20,7 @@ export interface IVideoResponse extends IResponse {
 
 export interface IVideoService {
   getVideos: () => Promise<IVideoResponse>;
+  createVideo: (
+    data: IVideoControllerRequestBody
+  ) => Promise<IVideoControllerResponse>;
 }
