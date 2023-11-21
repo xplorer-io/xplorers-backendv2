@@ -1,8 +1,7 @@
 import { Schema, model } from "mongoose";
+import { IProject } from "types/Project";
 
-import { IVideo } from "types/Video";
-
-const VideoSchema: Schema<IVideo> = new Schema(
+const ProjectSchema: Schema<IProject> = new Schema(
   {
     id: {
       type: Schema.Types.String,
@@ -16,11 +15,7 @@ const VideoSchema: Schema<IVideo> = new Schema(
       type: Schema.Types.String,
       required: true,
     },
-    thumbnailUrl: {
-      type: Schema.Types.String,
-      required: true,
-    },
-    videoUrl: {
+    sourceCodeUrl: {
       type: Schema.Types.String,
       required: true,
     },
@@ -30,4 +25,4 @@ const VideoSchema: Schema<IVideo> = new Schema(
   }
 );
 
-export const videoModel = model<IVideo>("Video", VideoSchema);
+export const projectModel = model<IProject>("Project", ProjectSchema);
