@@ -1,9 +1,21 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
+    "target": "ESNext",
+    "module": "CommonJS",
+    "baseUrl": "./src",
     "outDir": "./dist",
-    "rootDir": "./src",
-    "strict": true
-  }
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "resolveJsonModule": true
+  },
+  "lib": ["ESNext", "esnext.asynciterable"],
+  "typeRoots": ["src/types/*.ts", "./node_modules/@types"],
+  "include": ["src/**/*.ts", "test/**/*.ts"],
+  "exclude": ["node_modules"]
 }
