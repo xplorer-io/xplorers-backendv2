@@ -8,13 +8,11 @@ class VideoService implements IVideoService {
 
       const videos = await videoModel.find();
 
-      console.log("Checking if rawSubscriberData exists");
-
       if (!videos || !videos.length) {
         console.log(`No videos found.`);
         return {
           status_code: 404,
-          message: "No any subscriber found",
+          message: "No any videos found",
           videos: [],
         };
       }
@@ -23,7 +21,7 @@ class VideoService implements IVideoService {
 
       return {
         status_code: 200,
-        message: "Successfully fetched subscribers",
+        message: "Successfully fetched videos.",
         videos: videos,
       };
     } catch (err) {
