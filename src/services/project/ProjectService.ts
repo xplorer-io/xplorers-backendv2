@@ -43,6 +43,20 @@ class ProjectService implements IProjectService {
     data: IProjectControllerRequestBody
   ): Promise<IProjectControllerResponse> {
     try {
+      const existingProject = await projectModel.findOne({
+        projectId: data.projectId,
+      });
+
+      console.log("Checking if project already exists");
+
+      if (existingProject) {
+        console.log("Project already exists. Nothing to do here :)");
+        return {
+          status_code: 400,
+          message: "Success",
+        };
+      }
+
       console.log("Creating project from ProjectService");
 
       const projectData: IProjectControllerRequestBody = {

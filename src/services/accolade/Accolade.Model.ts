@@ -3,7 +3,7 @@ import { IAccolade } from "types/Accolade";
 
 const AccoladeSchema: Schema<IAccolade> = new Schema(
   {
-    id: {
+    accoladeId: {
       type: Schema.Types.String,
       required: true,
     },
