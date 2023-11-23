@@ -1,7 +1,7 @@
 import { IResponse } from "./Response";
 
 export interface IAccolade {
-  id: string;
+  accoladeId?: string;
   author: string;
   message: string;
   createdAt?: number;
@@ -9,7 +9,8 @@ export interface IAccolade {
 }
 
 export interface IAccoladeBody {
-  author: string;
+  accoladeId?: string;
+  author?: string;
   message: string;
 }
 

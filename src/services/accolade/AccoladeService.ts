@@ -43,11 +43,25 @@ class AccoladeService implements IAccoladeService {
 
   async createAccolade(data: IAccoladeBody): Promise<ICreateAccoladeResponse> {
     try {
+      const existingAccolade = await accoladeModel.findOne({
+        accoladeId: data.accoladeId,
+      });
+
+      console.log("Checking if accolade already exists");
+
+      if (existingAccolade) {
+        console.log("Accolade already exists. Nothing to do here :)");
+        return {
+          status_code: 400,
+          message: "Success",
+        };
+      }
+
       console.log("Creating accolade from AccoladeService");
 
       const accoladeData: IAccolade = {
-        id: randomUUID(),
-        author: data.author,
+        accoladeId: randomUUID(),
+        author: data.author || "",
         message: data.message,
       };
 

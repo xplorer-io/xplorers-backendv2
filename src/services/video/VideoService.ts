@@ -16,7 +16,7 @@ class VideoService implements IVideoService {
       if (!videos || !videos.length) {
         console.log(`No videos found.`);
         return {
-          status_code: 404,
+          status_code: 200,
           message: "No any videos found",
           videos: [],
         };
@@ -43,6 +43,24 @@ class VideoService implements IVideoService {
     data: IVideoControllerRequestBody
   ): Promise<IVideoControllerResponse> {
     try {
+      console.log("Checking if video already exists");
+
+      const existingVideo = await videoModel.findOne({
+        videoId: data.videoId,
+      });
+
+      console.log(existingVideo);
+
+      if (existingVideo) {
+        console.log(existingVideo);
+
+        console.log("Video already exists. Nothing to do here :)");
+        return {
+          status_code: 400,
+          message: "Success",
+        };
+      }
+
       console.log("Creating video from videoService");
 
       const videoData: IVideoControllerRequestBody = {
@@ -57,9 +75,10 @@ class VideoService implements IVideoService {
 
       const video = new videoModel(videoData);
 
-      console.log(`Saving user ${JSON.stringify(videoData)}`);
+      console.log(`Saving video ${JSON.stringify(videoData)}`);
 
       const savedVideo = await video.save();
+      console.log(savedVideo);
 
       if (!savedVideo) {
         console.log(`Unable to save video ${JSON.stringify(videoData)}}`);
@@ -77,6 +96,7 @@ class VideoService implements IVideoService {
         video: video,
       };
     } catch (error) {
+      console.log(error);
       return {
         status_code: 500,
         message: "Server error",

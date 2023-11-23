@@ -30,9 +30,16 @@ export const CreateAccoladeController: RequestHandler = async (
     message: message,
   });
 
-  return response.status(200).json({
-    status_code: accoladeResult.status_code,
-    message: accoladeResult.message,
-    accolade: accoladeResult.accolade,
-  });
+  if (accoladeResult.status_code === 200) {
+    return response.status(200).json({
+      status_code: accoladeResult.status_code,
+      message: accoladeResult.message,
+      accolade: accoladeResult.accolade,
+    });
+  } else {
+    return response.status(accoladeResult.status_code).json({
+      status_code: accoladeResult.status_code,
+      message: accoladeResult.message,
+    });
+  }
 };

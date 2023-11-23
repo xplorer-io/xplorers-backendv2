@@ -2,11 +2,12 @@ import { Schema, model } from "mongoose";
 
 import { IVideo } from "types/Video";
 
-const VideoSchema: Schema<IVideo> = new Schema(
+const VideoSchema: Schema = new Schema(
   {
     videoId: {
       type: Schema.Types.String,
       required: true,
+      auto: true,
     },
     title: {
       type: Schema.Types.String,

@@ -21,7 +21,7 @@ export const CreateVideoController: RequestHandler = async (
   response: Response
 ): Promise<Response<IVideoControllerResponse>> => {
   console.log(
-    `Getting request body for CreateAccoladeController ${JSON.stringify(
+    `Getting request body for CreateVideoController ${JSON.stringify(
       request.body
     )}`
   );
@@ -36,9 +36,16 @@ export const CreateVideoController: RequestHandler = async (
     videoUrl: videoUrl,
   });
 
-  return response.status(200).json({
-    status_code: videoResult.status_code,
-    message: videoResult.message,
-    video: videoResult.video,
-  });
+  if (videoResult.status_code === 200) {
+    return response.status(200).json({
+      status_code: videoResult.status_code,
+      message: videoResult.message,
+      video: videoResult.video,
+    });
+  } else {
+    return response.status(videoResult.status_code).json({
+      status_code: videoResult.status_code,
+      message: videoResult.message,
+    });
+  }
 };

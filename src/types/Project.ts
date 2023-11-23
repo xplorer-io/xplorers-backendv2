@@ -2,13 +2,13 @@ import { IProjectControllerRequestBody } from "../api/controllers/project/Create
 import { IResponse } from "./Response";
 
 export interface IProject {
-  projectId: string;
+  projectId?: string;
   title: string;
   description: string;
   thumbnailUrl: string;
   sourceCodeUrl: string;
-  createdAt: number;
-  updatedAt: number;
+  createdAt?: number;
+  updatedAt?: number;
 }
 
 export interface IProjectResponse extends IResponse {

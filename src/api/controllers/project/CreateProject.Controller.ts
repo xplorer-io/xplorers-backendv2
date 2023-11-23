@@ -37,9 +37,16 @@ export const CreateProjectController: RequestHandler = async (
     sourceCodeUrl: sourceCodeUrl,
   });
 
-  return response.status(200).json({
-    status_code: projectResult.status_code,
-    message: projectResult.message,
-    project: projectResult.project,
-  });
+  if (projectResult.status_code === 200) {
+    return response.status(200).json({
+      status_code: projectResult.status_code,
+      message: projectResult.message,
+      project: projectResult.project,
+    });
+  } else {
+    return response.status(projectResult.status_code).json({
+      status_code: projectResult.status_code,
+      message: projectResult.message,
+    });
+  }
 };
