@@ -1,4 +1,4 @@
-import { IVideo, IVideoResponse, IVideoService } from "types/Video";
+import { IVideoResponse, IVideoService } from "types/Video";
 import { videoModel } from "./Video.Model";
 import {
   IVideoControllerRequestBody,

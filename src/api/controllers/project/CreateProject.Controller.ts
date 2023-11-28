@@ -6,7 +6,6 @@ export interface IProjectControllerRequestBody {
   projectId: string;
   title: string;
   description: string;
-  thumbnailUrl: string;
   sourceCodeUrl: string;
 }
 
@@ -21,19 +20,17 @@ export const CreateProjectController: RequestHandler = async (
   response: Response
 ): Promise<Response<IProjectControllerResponse>> => {
   console.log(
-    `Getting request body for CreateAccoladeController ${JSON.stringify(
+    `Getting request body for CreateProjectController ${JSON.stringify(
       request.body
     )}`
   );
 
-  const { projectId, title, description, thumbnailUrl, sourceCodeUrl } =
-    request.body;
+  const { projectId, title, description, sourceCodeUrl } = request.body;
 
   const projectResult = await projectService.createProject({
     projectId: projectId,
     title: title,
     description: description,
-    thumbnailUrl: thumbnailUrl,
     sourceCodeUrl: sourceCodeUrl,
   });
 

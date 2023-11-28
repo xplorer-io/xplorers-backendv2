@@ -17,6 +17,6 @@ export const GetAccoladeController: RequestHandler = async (
   return response.status(accoladeResult.status_code).json({
     status_code: accoladeResult.status_code,
     message: accoladeResult.message,
-    acaccoladesc: accoladeResult.accolades,
+    acaccolades: accoladeResult.accolades,
   });
 };
