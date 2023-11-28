@@ -53,7 +53,7 @@ class ProjectService implements IProjectService {
         console.log("Project already exists. Nothing to do here :)");
         return {
           status_code: 400,
-          message: "Success",
+          message: "Bad request",
         };
       }
 
@@ -63,7 +63,6 @@ class ProjectService implements IProjectService {
         projectId: randomUUID(),
         title: data.title,
         description: data.description,
-        thumbnailUrl: data.thumbnailUrl,
         sourceCodeUrl: data.sourceCodeUrl,
       };
 
@@ -71,9 +70,10 @@ class ProjectService implements IProjectService {
 
       const project = new projectModel(projectData);
 
-      console.log(`Saving user ${JSON.stringify(projectData)}`);
+      console.log(`Saving project ${JSON.stringify(projectData)}`);
 
       const savedProject = await project.save();
+      console.log(savedProject);
 
       if (!savedProject) {
         console.log(`Unable to save project ${JSON.stringify(projectData)}}`);
@@ -92,8 +92,8 @@ class ProjectService implements IProjectService {
       };
     } catch (error) {
       return {
-        status_code: 200,
-        message: "success",
+        status_code: 500,
+        message: "Internal server error.",
       };
     }
   }

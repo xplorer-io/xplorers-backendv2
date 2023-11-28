@@ -5,7 +5,6 @@ export interface IProject {
   projectId?: string;
   title: string;
   description: string;
-  thumbnailUrl: string;
   sourceCodeUrl: string;
   createdAt?: number;
   updatedAt?: number;
